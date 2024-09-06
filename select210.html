@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datepicker Example</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        /* Reset and Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5 url('greenbg.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+            font-family: cursive;
+        }
+
+        /* Form Styles */
+        form {
+            background: rgba(227, 234, 214, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-section label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-section input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .time-select {
+            margin-bottom: 10px;
+        }
+
+        .time-slot {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .time-slot input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Submit Button Styles */
+        #submit-button {
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 40px;
+            background-color: #BFE3B9;
+            border: none;
+            border-radius: 20px;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #E3EAD6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Datepicker Example</h1>
+
+    <form id="date-form" action="/submit" method="post">
+        <!-- Left Section for Start Date and Slots -->
+        <div class="form-section">
+            <label for="start_date">Start Date:</label>
+            <input type="text" id="start_date" name="startdate" required>
+
+            <div class="time-select">
+                <label>Start Slot:</label>
+                <div class="time-slot">
+                    <input type="radio" id="start_morning" name="startslot" value="morning" required>
+                    <label for="start_morning">Morning</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" id="start_afternoon" name="startslot" value="afternoon">
+                    <label for="start_afternoon">Afternoon</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" id="start_evening" name="startslot" value="evening">
+                    <label for="start_evening">Evening</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" id="start_night" name="startslot" value="night">
+                    <label for="start_night">Night</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section for End Date and Slots -->
+        <div class="form-section">
+            <label for="end_date">End Date:</label>
+            <input type="text" id="end_date" name="enddate" required>
+
+            <div class="time-select">
+                <label>End Slot:</label>
+                <div class="time-slot">
+                    <input type="radio" id="end_morning" name="endslot" value="morning" required>
+                    <label for="end_morning">Morning</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" id="end_afternoon" name="endslot" value="afternoon">
+                    <label for="end_afternoon">Afternoon</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" id="end_evening" name="endslot" value="evening">
+                    <label for="end_evening">Evening</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" id="end_night" name="endslot" value="night">
+                    <label for="end_night">Night</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div id="submit-button">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#start_date, #end_date").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+</body>
+</html>

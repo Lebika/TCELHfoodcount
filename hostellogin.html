@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-image: url('https://www.tce.edu/sites/default/files/2022-09/TCE-WH-01_0.jpeg');
+            background-size: cover; /* Ensure the image covers the background */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent background from repeating */
+            display: flex;
+            justify-content: flex-start; /* Align to the left */
+            align-items: center; /* Center vertically */
+            height: 100vh;
+            padding: 20px; /* Add padding to prevent elements from sticking to edges */
+        }
+        
+        .login-form {
+            width: 300px; /* Set a fixed width for the form */
+        }
+
+        h1 {
+            margin: 30px 119px;
+            color: #f0f0f0;
+            margin-bottom: 20px;
+            text-align: left; /* Align the heading to the left */
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            margin: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+
+        button {
+            width: 100%;
+            padding: 20px 20px;
+            margin: 30px 20px;
+            border: none;
+            border-radius: 18px;
+            background-color: #b85843;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+        }
+
+        button:hover {
+            background-color: #b85833;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <h1>Login</h1>
+        <input type="text" id="mailid" placeholder="Email ID" required>
+        <input type="password" id="mailpassword" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        async function login() {
+            const mailid = document.getElementById('mailid').value;
+            const mailpassword = document.getElementById('mailpassword').value;
+
+            console.log('Attempting login with:', mailid, mailpassword); // Debugging line
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ mailid, mailpassword }),
+                });
+
+                const result = await response.json();
+                console.log('Login result:', result); // Debugging line
+
+                if (result.success) {
+                    window.location.href = 'select210.html'; // Redirect on successful login
+                } else {
+                    alert('Invalid credentials'); // Show alert if login fails
+                }
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('Error logging in, please try again later.');
+            }
+        }
+    </script>
+</body>
+</html>
