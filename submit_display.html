@@ -37,12 +37,44 @@
             color: black;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
+
+        .popup-button {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none; /* Initially hidden */
+        }
+
+        /* Show the button when the body has a "show-popup" class */
+        body.show-popup .popup-button {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Use a relative path for the image -->
         <img src="helpline.jpg" alt="Women's Helpline">
+        <button class="popup-button">Successfully Submitted</button>
+        
     </div>
+
+    <script>
+        // Show the popup button after a delay
+        window.onload = function() {
+            document.body.classList.add('show-popup');
+            setTimeout(function() {
+                document.body.classList.remove('show-popup');
+            }, 10000); // Hide after 3 seconds
+        };
+    </script>
 </body>
 </html>
