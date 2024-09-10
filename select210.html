@@ -165,11 +165,27 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        $(function() {
-            $("#start_date, #end_date").datepicker({
-                dateFormat: 'yy-mm-dd'
-            });
-        });
+       $(function() {
+    var today = new Date();
+    
+    // Initialize datepickers with date format and minDate
+    $("#start_date, #end_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        minDate: today
+    });
+
+    // Form validation to ensure end date isn't before start date
+    $("#date-form").on("submit", function (e) {
+        const startDate = new Date($("#start_date").val());
+        const endDate = new Date($("#end_date").val());
+
+        if (endDate < startDate) {
+            e.preventDefault();
+            alert("End date cannot be before start date.");
+        }
+    });
+});
+
     </script>
 </body>
 </html>
